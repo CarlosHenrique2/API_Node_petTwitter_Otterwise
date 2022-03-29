@@ -1,0 +1,33 @@
+{
+  "name": "boilerplate-back-end",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:OtterwiseCo/boilerplate-back-end.git",
+  "author": "João Pedro Bretanha <joaopedro@nave.rs>",
+  "license": "MIT",
+  "type": "module",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "scripts": {
+    "start": "npx prisma migrate deploy && npx prisma db seed && node src/index.js",
+    "dev": "nodemon src/index.js",
+    "db:push": "npx prisma db push",
+    "db:seed": "npx prisma db seed",
+    "db:migrate-dev": "npx prisma migrate dev --name",
+    "db:migrate-prod": "npx prisma migrate deploy",
+    "studio": "npx prisma studio"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prisma": "^3.9.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.9.1",
+    "bcrypt": "^5.0.1",
+    "fastify": "^3.27.1",
+    "fastify-cors": "^6.0.2",
+    "fastify-helmet": "^7.0.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
