@@ -14,5 +14,15 @@ model User {
   id       Int     @id @default(autoincrement())
   name     String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
+  username String  @unique @db.VarChar(255)
   password String
+  posts    Post[]
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    Int
+  created_at  DateTime?  @default(now()) @db.Timestamptz(6)
+  text        String     @db.VarChar(140)
 }
