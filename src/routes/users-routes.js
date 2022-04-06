@@ -8,4 +8,10 @@ export default {
     preHandler: [validateRequest],
     handler: UserController.index,
   },
+  RemoveUser: {
+    method: "DELETE",
+    url: "/users",
+    preHandler: [validateRequest],
+    handler: UserController.removeUser,
+  },
 };
