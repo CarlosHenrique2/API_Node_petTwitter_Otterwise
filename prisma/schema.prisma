@@ -15,7 +15,7 @@ model User {
   name     String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
   username String  @unique @db.VarChar(255)
-  password String
+  password String  
   posts    Post[]
 }
 

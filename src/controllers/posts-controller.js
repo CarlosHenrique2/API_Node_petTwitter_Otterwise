@@ -61,6 +61,16 @@ export const index = async (req, res) => {
     const results = await prisma.post.findMany({
       skip: page * 10,
       take: 10,
+      include: {
+        author: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            username: true,
+          },
+        },
+      },
     });
     return res.send(results);
   } catch (error) {
