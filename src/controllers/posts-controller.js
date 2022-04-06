@@ -29,7 +29,7 @@ export const create = async (req, res) => {
 
 /* checking */
 
-export const posts = async (req, res) => {
+/* export const posts = async (req, res) => {
   const { text, authorId } = req.body;
   try {
     const user = await prisma.user.findFirst({
@@ -40,13 +40,13 @@ export const posts = async (req, res) => {
     return res.send(user);
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: `Cannot posts ${error} ${user}` });
+    res.status(500).send({ error: `Cannot posts ${error} ${posts}` });
   }
-};
+}; */
 
 /* pagination home */
 
-export const getPosts = async (req, res) => {
+/* export const getPosts = async (req, res) => {
   try {
     let getposts = await prisma.post.findMany({
       where: {
@@ -60,11 +60,11 @@ export const getPosts = async (req, res) => {
       .status(500)
       .send({ error: `Cannot getallPosts posts ${error} ${getPosts}` });
   }
-};
+}; */
 
 /* pagination home */
 
-export const getallPostsId = async (req, res) => {
+/* export const getallPostsId = async (req, res) => {
   try {
     let posts = await prisma.post.findMany();
     return res.send({ data: { posts } });
@@ -72,35 +72,9 @@ export const getallPostsId = async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .send({ error: `Cannot getallPosts posts ${error} ${post}` });
+      .send({ error: `Cannot getallPosts posts ${error} ${getallPostsId}` });
   }
-};
-
-/* pagination config*/
-
-export const index = async (req, res) => {
-  const page = req.page - 1;
-  try {
-    const results = await prisma.post.findMany({
-      skip: page * 10,
-      take: 10,
-      include: {
-        author: {
-          select: {
-            id: true,
-            email: true,
-            name: true,
-            username: true,
-          },
-        },
-      },
-    });
-    return res.send(results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: `Cannot fetch posts ${error} ${results}` });
-  }
-};
+}; */
 
 /* DELETE bye id */
 
@@ -126,13 +100,13 @@ export const removePost = async (req, res) => {
 export const updatePost = async (req, res) => {
   const { authorId, text } = req.body;
   try {
-    const postupdate = await prisma.post.delete({
+    const postUpdate = await prisma.post.update({
       where: {
-        authorId,
+        authorId: authorId,
         text,
       },
     });
-    return res.send(postupdate);
+    return res.send(postUpdate);
   } catch (error) {
     console.error(error);
     res

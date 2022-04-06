@@ -1,6 +1,7 @@
 import userRoutes from "./users-routes.js";
 import authRoutes from "./auth-routes.js";
 import postsRoutes from "./posts-routes.js";
+import pageRoutes from "./page-routes.js";
 
 export const renderRoutes = [
   {
@@ -13,6 +14,7 @@ export const renderRoutes = [
   ...Object.values(userRoutes),
   ...Object.values(authRoutes),
   ...Object.values(postsRoutes),
+  ...Object.values(pageRoutes),
 ];
 
 export default (fastify, opts, next) => {

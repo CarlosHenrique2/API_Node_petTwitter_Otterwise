@@ -8,18 +8,6 @@ export default {
     preHandler: [validateRequest],
     handler: postscontroller.create,
   },
-  /* getPosts: {
-    method: "GET",
-    url: "/posts",
-    preHandler: [validateRequest],
-    handler: postscontroller.getPosts,
-  }, */
-  index: {
-    method: "GET",
-    url: "/posts",
-    preHandler: [validateRequest],
-    handler: postscontroller.index,
-  },
   removePost: {
     method: "DELETE",
     url: "/posts",
