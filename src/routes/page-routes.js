@@ -10,7 +10,7 @@ export default {
   },
   listProfileID: {
     method: "GET",
-    url: "/pagesID",
+    url: "/page/",
     preHandler: [validateRequest],
     handler: pagecontroller.listProfileID,
   },
