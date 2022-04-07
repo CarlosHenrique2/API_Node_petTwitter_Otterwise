@@ -1,36 +1,26 @@
 import { prisma } from "../helpers/utils.js";
 
-/* pagination home */
+/* pagination home Profile List ID posts */
 
-/* export const getallPosts = async (req, res) => {
+export const listProfileID = async (req, res) => {
+  const { id, authorId } = req.user;
+  console.log(req.user);
   try {
-    let getposts = await prisma.post.findMany({});
-    return res.send({ data: { getposts } });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .send({ error: `Cannot getallPosts posts ${error} ${getallPosts}` });
-  }
-}; */
-
-/* pagination home */
-
-/* export const getallID = async (req, res) => {
-  try {
-    let posts = await prisma.post.findMany({
-      where: { id: +id },
+    const listID = await prisma.post.findMany({
+      where: {
+        authorId: id,
+      },
     });
-    return res.send({ data: { posts } });
+    return res.send({ data: { listID } });
   } catch (error) {
     console.error(error);
     res
       .status(500)
-      .send({ error: `Cannot getallPosts posts ${error} ${getallID}` });
+      .send({ error: `Cannot getallPosts posts ${error} ${listProfileID}` });
   }
-}; */
+};
 
-/* pagination config*/
+/* pagination home Feed List posts */
 
 export const index = async (req, res) => {
   const page = req.page - 1;

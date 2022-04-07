@@ -3,11 +3,12 @@ import { prisma } from "../helpers/utils.js";
 /* create posts and find the user's existence */
 
 export const create = async (req, res) => {
-  const { text, authorId } = req.body;
+  const { text } = req.body;
+  const { id } = req.user;
   try {
     const user = await prisma.user.findFirst({
       where: {
-        id: authorId,
+        id: id,
       },
     });
     if (!user) {
@@ -16,65 +17,30 @@ export const create = async (req, res) => {
     const post = await prisma.post.create({
       data: {
         text,
-        authorId,
+        authorId: id,
       },
     });
     console.log(post);
     return res.send({ data: { post } });
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: `Cannot create posts ${error} ${user}` });
+    res.status(500).send({ error: `Cannot create posts ${error} ${create}` });
   }
 };
 
-/* checking */
+/* get all posts */
 
-/* export const posts = async (req, res) => {
-  const { text, authorId } = req.body;
+export const getallPosts = async (req, res) => {
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        id: authorId,
-      },
-    });
-    return res.send(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: `Cannot posts ${error} ${posts}` });
-  }
-}; */
-
-/* pagination home */
-
-/* export const getPosts = async (req, res) => {
-  try {
-    let getposts = await prisma.post.findMany({
-      where: {
-        id,
-      },
-    });
-    return res.send({ data: { getposts } });
+    let postsGet = await prisma.post.findMany();
+    return res.send({ data: { postsGet } });
   } catch (error) {
     console.error(error);
     res
       .status(500)
-      .send({ error: `Cannot getallPosts posts ${error} ${getPosts}` });
+      .send({ error: `Cannot getallPosts posts ${error} ${getallPosts}` });
   }
-}; */
-
-/* pagination home */
-
-/* export const getallPostsId = async (req, res) => {
-  try {
-    let posts = await prisma.post.findMany();
-    return res.send({ data: { posts } });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .send({ error: `Cannot getallPosts posts ${error} ${getallPostsId}` });
-  }
-}; */
+};
 
 /* DELETE bye id */
 
@@ -98,11 +64,14 @@ export const removePost = async (req, res) => {
 /* UPDATE post  */
 
 export const updatePost = async (req, res) => {
-  const { authorId, text } = req.body;
+  const { id, authorId, text } = req.body;
   try {
     const postUpdate = await prisma.post.update({
       where: {
-        authorId: authorId,
+        id: id,
+      },
+      data: {
+        authorId,
         text,
       },
     });

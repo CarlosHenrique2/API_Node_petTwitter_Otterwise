@@ -8,4 +8,10 @@ export default {
     preHandler: [validateRequest],
     handler: pagecontroller.index,
   },
+  listProfileID: {
+    method: "GET",
+    url: "/pagesID",
+    preHandler: [validateRequest],
+    handler: pagecontroller.listProfileID,
+  },
 };

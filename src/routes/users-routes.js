@@ -14,4 +14,10 @@ export default {
     preHandler: [validateRequest],
     handler: UserController.removeUser,
   },
+  updateUser: {
+    method: "PUT",
+    url: "/users",
+    preHandler: [validateRequest],
+    handler: UserController.updateUser,
+  },
 };

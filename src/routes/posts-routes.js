@@ -20,4 +20,10 @@ export default {
     preHandler: [validateRequest],
     handler: postscontroller.updatePost,
   },
+  getallPosts: {
+    method: "GET",
+    url: "/posts",
+    preHandler: [validateRequest],
+    handler: postscontroller.getallPosts,
+  },
 };

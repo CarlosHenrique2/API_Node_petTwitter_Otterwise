@@ -32,3 +32,27 @@ export const removeUser = async (req, res) => {
       .send({ error: `Cannot remove users ${error} ${removeUser} ` });
   }
 };
+
+/* Update user */
+
+export const updateUser = async (req, res) => {
+  const { id, name, email, username } = req.body;
+  try {
+    const userUpdate = await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name,
+        email,
+        username,
+      },
+    });
+    return res.send(userUpdate);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ error: `Cannot remove posts ${error} ${updateUser}` });
+  }
+};
