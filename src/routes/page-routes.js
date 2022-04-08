@@ -14,4 +14,10 @@ export default {
     preHandler: [validateRequest],
     handler: pagecontroller.listProfileID,
   },
+  Userposts: {
+    method: "GET",
+    url: "/pages",
+
+    handler: pagecontroller.Userposts,
+  },
 };

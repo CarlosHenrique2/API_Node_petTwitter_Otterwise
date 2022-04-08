@@ -1,5 +1,38 @@
 import { prisma } from "../helpers/utils.js";
 
+/* List User Posts */
+
+export const Userposts = async (req, res) => {
+  console.log(req.query.id);
+  const { id } = req.query;
+  /*  const page = req.page - 1; */
+  try {
+    const results = await prisma.post.findMany({
+      /*  skip: page * 10,*/
+      take: 10,
+      where: {
+        authorId: Number(id),
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            username: true,
+          },
+        },
+      },
+    });
+    return res.send({ data: { results } });
+  } catch (error) {
+    /* console.error(error); */
+    res
+      .status(500)
+      .send({ error: `Cannot Userposts posts ${error} ${Userposts}` });
+  }
+};
+
 /* pagination home Profile List ID posts */
 
 export const listProfileID = async (req, res) => {
