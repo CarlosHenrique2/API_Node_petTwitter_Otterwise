@@ -9,8 +9,6 @@ export const validateRequest = async (req, res) => {
     console.log(req.query.page, "testando");
     req.user = user;
     req.page = req.query.page;
-    /*  const result = await res(req);
-    return result; */
   } catch (error) {
     return res.status(401).send({ error: "Unauthorized!" });
   }

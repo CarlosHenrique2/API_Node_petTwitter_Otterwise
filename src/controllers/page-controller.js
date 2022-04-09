@@ -5,7 +5,6 @@ import { prisma } from "../helpers/utils.js";
 export const Userposts = async (req, res) => {
   console.log(req.query.id);
   const { id } = req.query;
-  /*  const page = req.page - 1; */
   try {
     const listPostId = await prisma.post.findMany({
       /*  skip: page * 10,*/
@@ -29,7 +28,6 @@ export const Userposts = async (req, res) => {
     });
     return res.send({ data: { listPostId } });
   } catch (error) {
-    /* console.error(error); */
     res
       .status(500)
       .send({ error: `Cannot Userposts posts ${error} ${Userposts}` });
