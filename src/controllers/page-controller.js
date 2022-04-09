@@ -7,7 +7,7 @@ export const Userposts = async (req, res) => {
   const { id } = req.query;
   /*  const page = req.page - 1; */
   try {
-    const results = await prisma.post.findMany({
+    const listPostId = await prisma.post.findMany({
       /*  skip: page * 10,*/
       take: 10,
       where: {
@@ -23,8 +23,11 @@ export const Userposts = async (req, res) => {
           },
         },
       },
+      orderBy: {
+        created_at: "desc",
+      },
     });
-    return res.send({ data: { results } });
+    return res.send({ data: { listPostId } });
   } catch (error) {
     /* console.error(error); */
     res
@@ -42,6 +45,9 @@ export const listProfileID = async (req, res) => {
     const listID = await prisma.post.findMany({
       where: {
         authorId: id,
+      },
+      orderBy: {
+        created_at: "desc",
       },
     });
     return res.send({ data: { listID } });
@@ -70,6 +76,9 @@ export const index = async (req, res) => {
             username: true,
           },
         },
+      },
+      orderBy: {
+        created_at: "desc",
       },
     });
     return res.send(results);

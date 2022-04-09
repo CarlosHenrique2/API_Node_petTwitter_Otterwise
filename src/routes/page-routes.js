@@ -17,7 +17,7 @@ export default {
   Userposts: {
     method: "GET",
     url: "/pages",
-
+    preHandler: [validateRequest],
     handler: pagecontroller.Userposts,
   },
 };
