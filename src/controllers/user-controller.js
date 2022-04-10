@@ -7,10 +7,27 @@ export const index = async (req, res) => {
     let users = await prisma.user.findMany({
       select: { id: true, name: true, username: true, email: true },
     });
-    return res.send({ data: { users } });
+    return res.send(users);
   } catch (error) {
     console.error("users", error);
     res.status(500).send({ error: `Cannot get users ${error} ${index}` });
+  }
+};
+
+/* Get bye id user */
+
+export const UserByeId = async (req, res) => {
+  const { id } = req.query;
+  try {
+    let IdUser = await prisma.user.findUnique({
+      where: {
+        id: Number(id),
+      },
+    });
+    return res.send(IdUser);
+  } catch (error) {
+    console.error("users", error);
+    res.status(500).send({ error: `Cannot get users ${error} ${UserByeId}` });
   }
 };
 

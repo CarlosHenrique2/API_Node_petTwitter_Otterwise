@@ -8,12 +8,6 @@ export default {
     preHandler: [validateRequest],
     handler: pagecontroller.index,
   },
-  listProfileID: {
-    method: "GET",
-    url: "/page/",
-    preHandler: [validateRequest],
-    handler: pagecontroller.listProfileID,
-  },
   Userposts: {
     method: "GET",
     url: "/pages",

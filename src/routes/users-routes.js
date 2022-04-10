@@ -8,6 +8,12 @@ export default {
     preHandler: [validateRequest],
     handler: UserController.index,
   },
+  UserByeId: {
+    method: "GET",
+    url: "/user",
+    preHandler: [validateRequest],
+    handler: UserController.UserByeId,
+  },
   RemoveUser: {
     method: "DELETE",
     url: "/users",

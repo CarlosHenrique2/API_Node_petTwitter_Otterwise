@@ -21,7 +21,7 @@ export const create = async (req, res) => {
       },
     });
     console.log(post);
-    return res.send({ data: { post } });
+    return res.send(post);
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: `Cannot create posts ${error} ${create}` });
@@ -33,7 +33,7 @@ export const create = async (req, res) => {
 export const getallPosts = async (req, res) => {
   try {
     let postsGet = await prisma.post.findMany();
-    return res.send({ data: { postsGet } });
+    return res.send(postsGet);
   } catch (error) {
     console.error(error);
     res
