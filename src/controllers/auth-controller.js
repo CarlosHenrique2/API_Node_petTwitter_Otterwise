@@ -22,7 +22,6 @@ export const signup = async (req, reply) => {
 
     reply.send(user);
   } catch (error) {
-    console.log(error);
     reply.status(400).send({ error: `User already exists!` });
   }
 };
@@ -48,7 +47,6 @@ export const login = async (req, reply) => {
       accessToken: await createAccessToken(data),
     });
   } catch (error) {
-    console.log(error);
     reply.status(500).send({ error: "Server error!" });
   }
 };

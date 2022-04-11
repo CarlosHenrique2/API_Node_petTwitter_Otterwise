@@ -6,7 +6,6 @@ export const validateRequest = async (req, res) => {
     const token = auth?.replace("Bearer ", "");
 
     const user = await verifyToken(token);
-    console.log(req.query.page, "testando");
     req.user = user;
     req.page = req.query.page;
   } catch (error) {

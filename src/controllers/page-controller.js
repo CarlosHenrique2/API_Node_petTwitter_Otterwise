@@ -3,7 +3,6 @@ import { prisma } from "../helpers/utils.js";
 /* List User Posts */
 
 export const Userposts = async (req, res) => {
-  console.log(req.query.id);
   const { id } = req.query;
   try {
     const listPostId = await prisma.post.findMany({
@@ -57,7 +56,6 @@ export const index = async (req, res) => {
     });
     return res.send(results);
   } catch (error) {
-    console.error(error);
     res.status(500).send({ error: `Cannot fetch posts ${error} ${results}` });
   }
 };

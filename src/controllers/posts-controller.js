@@ -20,10 +20,8 @@ export const create = async (req, res) => {
         authorId: id,
       },
     });
-    console.log(post);
     return res.send(post);
   } catch (error) {
-    console.error(error);
     res.status(500).send({ error: `Cannot create posts ${error} ${create}` });
   }
 };
@@ -35,7 +33,6 @@ export const getallPosts = async (req, res) => {
     let postsGet = await prisma.post.findMany();
     return res.send(postsGet);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .send({ error: `Cannot getallPosts posts ${error} ${getallPosts}` });
@@ -54,7 +51,6 @@ export const removePost = async (req, res) => {
     });
     return res.send(post);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .send({ error: `Cannot remove posts ${error} ${removePost}` });
@@ -77,7 +73,6 @@ export const updatePost = async (req, res) => {
     });
     return res.send(postUpdate);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .send({ error: `Cannot remove posts ${error} ${updatePost}` });

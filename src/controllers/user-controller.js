@@ -9,7 +9,6 @@ export const index = async (req, res) => {
     });
     return res.send(users);
   } catch (error) {
-    console.error("users", error);
     res.status(500).send({ error: `Cannot get users ${error} ${index}` });
   }
 };
@@ -26,7 +25,6 @@ export const UserByeId = async (req, res) => {
     });
     return res.send(IdUser);
   } catch (error) {
-    console.error("users", error);
     res.status(500).send({ error: `Cannot get users ${error} ${UserByeId}` });
   }
 };
@@ -43,7 +41,6 @@ export const removeUser = async (req, res) => {
     });
     return res.send(user);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .send({ error: `Cannot remove users ${error} ${removeUser} ` });
@@ -67,7 +64,6 @@ export const updateUser = async (req, res) => {
     });
     return res.send(userUpdate);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .send({ error: `Cannot remove posts ${error} ${updateUser}` });
