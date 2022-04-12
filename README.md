@@ -131,3 +131,5 @@ $ http://localhost:5000/user?id=24
 - [Fastify-helmet](https://www.npmjs.com/package/fastify-helmet)
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+
+<p>en caso de duvidas por favor utilizar o arquivo que esta na pasta "Postman documentation"</p>
