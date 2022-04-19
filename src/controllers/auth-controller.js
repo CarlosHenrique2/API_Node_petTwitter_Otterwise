@@ -6,23 +6,35 @@ import {
 } from "../helpers/utils.js";
 
 export const signup = async (req, reply) => {
-  const { email, name, username, password: pass } = req.body;
-
   try {
+    const { email, name, username, password: pass } = req.body;
     const password = await hashPassword(pass);
-
-    const { password: hashedPassword, ...user } = await prisma.user.create({
-      data: {
-        name,
-        email,
+    const User = await prisma.user.findUnique({
+      where: {
         username,
-        password,
       },
     });
-
-    reply.send(user);
+    const Email = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (User || Email) {
+      reply.status(401).send({ error: `Usuário já existe` });
+    } else {
+      const { password: hashedPassword, ...user } = await prisma.user.create({
+        data: {
+          name,
+          email,
+          username,
+          password,
+        },
+      });
+      reply.status(201).send(user);
+    }
   } catch (error) {
-    reply.status(400).send({ error: `User already exists!` });
+    console.log(error);
+    reply.status(500).send({ error: `Server error! ` });
   }
 };
 

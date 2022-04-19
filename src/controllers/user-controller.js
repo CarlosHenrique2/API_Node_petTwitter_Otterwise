@@ -7,7 +7,7 @@ export const index = async (req, res) => {
     let users = await prisma.user.findMany({
       select: { id: true, name: true, username: true, email: true },
     });
-    return res.send(users);
+    return res.status(200).send(users);
   } catch (error) {
     res.status(500).send({ error: `Cannot get users ${error} ${index}` });
   }
@@ -23,7 +23,7 @@ export const UserByeId = async (req, res) => {
         id: Number(id),
       },
     });
-    return res.send(IdUser);
+    return res.status(200).send(IdUser);
   } catch (error) {
     res.status(500).send({ error: `Cannot get users ${error} ${UserByeId}` });
   }
@@ -39,7 +39,7 @@ export const removeUser = async (req, res) => {
         id: id,
       },
     });
-    return res.send(user);
+    return res.status(200).send(user);
   } catch (error) {
     res
       .status(500)
@@ -62,7 +62,7 @@ export const updateUser = async (req, res) => {
         username,
       },
     });
-    return res.send(userUpdate);
+    return res.status(201).send(userUpdate);
   } catch (error) {
     res
       .status(500)

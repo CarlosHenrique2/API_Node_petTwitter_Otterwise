@@ -24,7 +24,7 @@ export const Userposts = async (req, res) => {
         created_at: "desc",
       },
     });
-    return res.send(listPostId);
+    return res.status(200).send(listPostId);
   } catch (error) {
     res
       .status(500)
@@ -54,7 +54,7 @@ export const index = async (req, res) => {
         created_at: "desc",
       },
     });
-    return res.send(results);
+    return res.status(200).send(results);
   } catch (error) {
     res.status(500).send({ error: `Cannot fetch posts ${error} ${results}` });
   }
